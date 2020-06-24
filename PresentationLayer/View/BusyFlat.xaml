@@ -1,0 +1,46 @@
+﻿<Window x:Class="PresentationLayer.View.BusyFlat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,-0.4,-20">
+        <ComboBox x:Name="ComboBoxFlatChoise" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="150" ItemsSource="{Binding HouseTypes}" SelectedItem="{Binding SelectedHouseType}" DisplayMemberPath="NumberOfHouse"/>
+        <DataGrid x:Name="DataGridAvailableFlatsList" Height="292" Margin="10,65,10,0" VerticalAlignment="Top" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding Flats}" SelectedItem="{Binding SelectedFlat}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер квартиры" Binding="{Binding Path=ApartmentNumber}" Width="110" />
+                <DataGridTextColumn Header="Площадь" Binding="{Binding Path=Area}" Width="100" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Имя владельца" Binding="{Binding Path=Owner.Name}" Width="100" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=Owner.PhoneNumber}" Width="110" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Дата покупки квартиры" Binding="{Binding Path=Owner.DateOfPurchase}" Width="150" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="ButtonTariffCalculation" Content="Создать платёж" Height="48" Margin="644,12,12,0" VerticalAlignment="Top" Command="{Binding TariffCalculation}"/>
+        <Label Content="Выберите номер дома:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonViewTariffs" Content="Посмотреть начисленные платежи" Margin="286,368,300,33" Command="{Binding ViewTariffsCommand}"/>
+        <Label Content="Название тарифа:" HorizontalAlignment="Right" Margin="0,10,323.6,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="475,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text ="{Binding Name}"/>
+        <Label Content="Стоимость:  " HorizontalAlignment="Left" Margin="393,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.557,-0.113"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="475,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text ="{Binding Pay}"/>
+
+    </Grid>
+</Window>
